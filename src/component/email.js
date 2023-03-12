@@ -1,10 +1,9 @@
 import React, { useState } from "react";
+import clsx from 'clsx'
 
 const Email = ({ label, setEmail, email }) => {
-    const [password, setPassword] = useState('')
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidEmpty, setIsValidEmpty] = useState(true);
-    const [isValidPassword, setIsValidPassword] = useState(true);
 
     const handleEmail = (value) => {
         setEmail(value)
@@ -28,6 +27,11 @@ const Email = ({ label, setEmail, email }) => {
         }
     }
 
+    const componentClasses = clsx(
+        'form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full',
+        { 'form-input block py-2 px-3 border border-red-500 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full': !isValidEmail || !isValidEmpty },
+      );
+
     return (
         <>
             <div>
@@ -35,7 +39,7 @@ const Email = ({ label, setEmail, email }) => {
                     {label}
                 </label>
                 <div>
-                    <input style={{ border: !isValidEmail || !isValidEmpty ? '1px solid red' : '', outline: !isValidEmail || !isValidEmpty ? 'none' : '' }} onBlur={handleBlur} value={email} onChange={(e) => handleEmail(e.target.value)} type="text" autocomplete="username" name="email" className={`form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full`} />
+                    <input onBlur={handleBlur} value={email} onChange={(e) => handleEmail(e.target.value)} type="text" autocomplete="username" name="email" className={componentClasses} />
                 </div>
             </div>
             {!isValidEmpty ? <div><div class="text-xs text-red-500  mt-2">Esse campo é obrigatório</div></div> :

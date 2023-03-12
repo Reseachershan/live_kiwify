@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Kiwify from '../assets/kiwify.png'
 import Email from "../component/email";
+import clsx from 'clsx'
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -19,6 +20,11 @@ const Login = () => {
             setIsValidPassword(true)
         }
     }
+
+    const componentClasses = clsx(
+        'form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full',
+        { 'form-input block py-2 px-3 border border-red-500 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full': !isValidPassword }
+      );
 
     return (
         <>
@@ -42,7 +48,7 @@ const Login = () => {
                         Senha
                     </label>
                         <div>
-                            <input style={{ border: !isValidPassword ? '1px solid red' : '', outline: !isValidPassword ? 'none' : '' }} onBlur={hanldePasswordBlue} value={password} onChange={(e) => hanldePassword(e.target.value)} type="password" autocomplete="current-password" name="password" className="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full" />
+                            <input onBlur={hanldePasswordBlue} value={password} onChange={(e) => hanldePassword(e.target.value)} type="password" autocomplete="current-password" name="password" className={componentClasses} />
                         </div>
                         {!isValidPassword && <div><div class="text-xs text-red-500  mt-2">Esse campo é obrigatório</div></div>}
 

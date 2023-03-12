@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Kiwify from '../assets/kiwify.png'
 import Email from "../component/email";
+import clsx from 'clsx'
 
 const Signup = () => {
     const [email, setEmail] = useState('')
@@ -10,6 +11,16 @@ const Signup = () => {
     const [isValidPassword, setIsValidPassword] = useState(true);
     const [clickCount, setClickCount] = useState(0);
     const [checkbox, setCheckBox] = useState(true);
+
+    useEffect(() => {
+        if (clickCount == 0) {
+            setCheckBox(true)
+        }else if (clickCount % 2 == 0) {
+            setCheckBox(false)
+        } else {
+            setCheckBox(true)
+        }
+    }, [clickCount])
 
     const hanldePassword = (value) => {
         setPassword(value)
@@ -28,9 +39,13 @@ const Signup = () => {
         } else if (event.target.checked === false) {
             setCheckBox(false)
         }
-
         setClickCount(clickCount + 1);
     };
+
+    const componentClasses = clsx(
+        'form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full',
+        { 'form-input block py-2 px-3 border border-red-500 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full': !isValidPassword }
+      );
 
     return (
         <>
@@ -58,7 +73,7 @@ const Signup = () => {
                         Senha
                     </label>
                         <div>
-                            <input style={{ border: !isValidPassword ? '1px solid red' : '', outline: !isValidPassword ? 'none' : '' }} onBlur={hanldePasswordBlue} value={password} onChange={(e) => hanldePassword(e.target.value)} type="password" autocomplete="current-password" name="password" className="form-input block py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 w-full" />
+                            <input onBlur={hanldePasswordBlue} value={password} onChange={(e) => hanldePassword(e.target.value)} type="password" autocomplete="current-password" name="password" className={componentClasses} />
                         </div>
                         {!isValidPassword && <div><div className="text-xs text-red-500  mt-2">Esse campo é obrigatório</div></div>}
                     </div>
