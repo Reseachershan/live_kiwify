@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/live_kiwify/static/css/main.a37ee3d3.css",
-    "main.js": "/live_kiwify/static/js/main.03e51bf0.js",
+    "main.js": "/live_kiwify/static/js/main.504d2303.js",
     "static/js/787.064213a2.chunk.js": "/live_kiwify/static/js/787.064213a2.chunk.js",
     "static/media/kiwify.png": "/live_kiwify/static/media/kiwify.2af0e504c88e8c6147af.png",
     "index.html": "/live_kiwify/index.html",
     "main.a37ee3d3.css.map": "/live_kiwify/static/css/main.a37ee3d3.css.map",
-    "main.03e51bf0.js.map": "/live_kiwify/static/js/main.03e51bf0.js.map",
+    "main.504d2303.js.map": "/live_kiwify/static/js/main.504d2303.js.map",
     "787.064213a2.chunk.js.map": "/live_kiwify/static/js/787.064213a2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a37ee3d3.css",
-    "static/js/main.03e51bf0.js"
+    "static/js/main.504d2303.js"
   ]
 }
